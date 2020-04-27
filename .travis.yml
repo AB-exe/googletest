@@ -5,6 +5,34 @@
 
 language: cpp
 
+
+
+
+
+# Define the matrix explicitly, manually expanding the combinations of (os, compiler, env).
+# It is more tedious, but grants us far more flexibility.
+matrix:
+  include:
+    - os: linux
+      before_install: chmod -R +x ./ci/*platformio.sh
+      install: ./ci/install-platformio.sh
+      script: ./ci/build-platformio.sh
+    - os: linux
+      dist: xenial
+      compiler: gcc
+      install: ./ci/install-linux.sh && ./ci/log-config.sh
+      script: ./ci/build-linux-bazel.sh
+    - os: linux
+      dist: xenial https://docs.travis-ci.com/user/customizing-the-build/
+# This file can be validated on:
+# http://lint.travis-ci.org/
+
+language: cpp
+
+
+
+
+
 # Define the matrix explicitly, manually expanding the combinations of (os, compiler, env).
 # It is more tedious, but grants us far more flexibility.
 matrix:
@@ -20,6 +48,17 @@ matrix:
       script: ./ci/build-linux-bazel.sh
     - os: linux
       dist: xenial
+      compiler: clang
+      install: ./ci/install-linux.sh && ./ci/log-config.sh
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/build
+      script: ./ci/buildvvv
       compiler: clang
       install: ./ci/install-linux.sh && ./ci/log-config.sh
       script: ./ci/build-linux-bazel.sh
